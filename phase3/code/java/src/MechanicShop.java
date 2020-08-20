@@ -23,7 +23,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.*;
 /**
  * This class defines a simple embedded SQL utility class that is designed to
  * work with PostgreSQL JDBC drivers.
@@ -305,11 +305,51 @@ public class MechanicShop{
 	}//end readChoice
 	
 	public static void AddCustomer(MechanicShop esql){//1
+                String insertCustomer = "";
+                int id = 5961;
+		String fname =  "joe";
+                String lname = "mama";
+                String phone = "(123)456-7890";
+                String address = "123 wow street";
+                System.out.println("Insert first name: ");
+		fname = in.readLine();
+                System.out.println("Insert last name: ");
+                lname = in.readLine();
+                System.out.println("Insert phone number: ");
+                phone = in.readLine();
+                System.out.println("Insert address: ");
+                address = in.readLine();                 
+		insertCustomer = String.format( "INSERT INTO Customer (id, fname, lname, phone, address) Values ( %d,'%s', '%s', '%s', '%s');",id, fname, lname, phone, address);
+                System.out.println(insertCustomer);
 		
+		try {
+		esql.executeUpdate(insertCustomer);
+		
+		}
+		catch (Exception e) {
+		System.out.println("Nope");
+		
+		} 	
 	}
+
 	
 	public static void AddMechanic(MechanicShop esql){//2
-		
+                int id = 5961;
+                String fname =  "joe";
+                String lname = "mama";
+		int years = 0;
+		String insertMechanic =	String.format("INSERT INTO Mechanic Values (%d, '%s', '%s', %d);", id, fname, lname, years);
+		System.out.println(insertMechanic);
+
+                try {
+                esql.executeUpdate(insertMechanic);
+
+                }
+                catch (Exception e) {
+                System.out.println("Nope");
+
+                }
+  
 	}
 	
 	public static void AddCar(MechanicShop esql){//3
