@@ -560,6 +560,15 @@ public static void AddCar(MechanicShop esql){//3
 	
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
 		//
+	String query = "Select C.make, C.model, Count(C.vin) as NumberOfRequests From Car C, Service_Request SR Where C.vin = SR.car_vin Group By C.vin  Order By NumberOfRequests Desc Limit 10;";
+
+	try{
+	esql.executeQueryAndPrintResult(query);
+	}
+	catch (Exception e)
+	{
+	System.out.println("Nope");
+	}
 		
 	}
 	
