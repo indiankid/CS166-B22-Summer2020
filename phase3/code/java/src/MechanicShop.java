@@ -528,8 +528,14 @@ public static void AddCar(MechanicShop esql){//3
 	}
 	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
-		
+        String query = "Select CR.date, CR.Comment, CR.bill From Customer C, Service_request SR, Closed_request CR Where C.id = SR.customer_id and SR.rid = CR.rid and CR.bill < 100;";
+	try {
+	esql.executeQueryAndPrintResult(query);
+        }
+        catch (Exception e) {
+        System.out.println("Nope");	
 	}
+        }
 	
 //note: count the number of cars everyone owns and select where the number owned is >=20
 	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
@@ -559,7 +565,15 @@ public static void AddCar(MechanicShop esql){//3
 	
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
 		//
-		
+        String query = "Select C.fname, C.lname, SUM(CR.bill) as TotalBill From Customer C, Service_Request SR, Closed_Request CR Where C.id = SR.customer_id and SR.rid = CR.rid Group By C.id Order By TotalBill Desc;";
+
+	try {
+	esql.executeQueryAndPrintResult(query);
+        }
+	catch (Exception e)
+	{
+	System.out.println("Nope");
 	}
+	}			
 	
 }
