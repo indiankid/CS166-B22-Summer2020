@@ -303,35 +303,10 @@ public class MechanicShop{
 		}while (true);
 		return input;
 	}//end readChoice
-/*	
-	public static void AddCustomer(MechanicShop esql){//1
-                String insertCustomer = "";
-                int id = 5961;
-		String fname =  "joe";
-                String lname = "mama";
-                String phone = "(123)456-7890";
-                String address = "123 wow street";
-                System.out.println("Insert first name: ");
-		fname = in.readLine();
-                System.out.println("Insert last name: ");
-                lname = in.readLine();
-                System.out.println("Insert phone number: ");
-                phone = in.readLine();
-                System.out.println("Insert address: ");
-                address = in.readLine();                 
-		insertCustomer = String.format( "INSERT INTO Customer (id, fname, lname, phone, address) Values ( %d,'%s', '%s', '%s', '%s');",id, fname, lname, phone, address);
-                System.out.println(insertCustomer);
-		
-		try {
-		esql.executeUpdate(insertCustomer);
-		
-		}
-		catch (Exception e) {
-		System.out.println("Nope");
-		
-		} 	
-	}
-*/
+
+
+
+		//verify lengths
 	public static void AddCustomer(MechanicShop esql){//1
         String insertCustomer = "";
         int id = 5961;
@@ -340,10 +315,26 @@ public class MechanicShop{
         String phone = "(123)456-7890";
         String address = "123 wow street";
         
+        //assuming that the person adding in the input knows the next ID
+        System.out.println("Insert an unused Customer ID: ");
+		try {
+		id = Integer.parseInt(in.readLine());
+        } 
+		catch (Exception e) {
+		System.out.println("Invalid input");
+		
+		}
+
+
+
         System.out.println("Insert first name: ");
 		try {
 		fname = in.readLine();
         }
+        if(fname.length() <= 0 || fname.length() > 32){
+			throw new Exception("First name is either too long (over 32), or not long enough (0)... figure it out.");
+		}	
+		break;  
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -353,6 +344,10 @@ public class MechanicShop{
         try {
 		lname = in.readLine();
         }
+        if(lname.length() <= 0 || lname.length() > 32){
+			throw new Exception("Last name is either too long (over 32), or not long enough (0)... figure it out.");
+		}	
+		break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -362,6 +357,10 @@ public class MechanicShop{
         try {
 		phone = in.readLine();
         }
+        if(phone.length() <= 0 || phone.length() > 13){
+			throw new Exception("Number should be in this format: (XXX)XXX-XXXX");
+		}	
+		break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -371,6 +370,10 @@ public class MechanicShop{
         try {
 		address = in.readLine();
         }
+        if(address.length() <= 0 || address.length() > 256){
+			throw new Exception("Address is either too long (over 256), or not long enough (0)... figure it out.");
+		}	
+		break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -388,26 +391,33 @@ public class MechanicShop{
 		
 		} 	
 	}
-
+//verify lengths
 public static void AddMechanic(MechanicShop esql){//2
         int id = 5961;
         String fname =  "joe";
         String lname = "mama";
 	int years = 0;
 		
-		System.out.println("Insert employee id: ");
+		//assuming that the person adding in the input knows the next ID
+        System.out.println("Insert an unused Customer ID: ");
 		try {
 		id = Integer.parseInt(in.readLine());
-        }
+        } 
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
 		}
-		
-		System.out.println("Insert first name: ");
+
+
+
+        System.out.println("Insert first name: ");
 		try {
 		fname = in.readLine();
         }
+        if(fname.length() <= 0 || fname.length() > 32){
+			throw new Exception("First name is either too long (over 32), or not long enough (0)... figure it out.");
+		}	
+		break;  
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -417,6 +427,10 @@ public static void AddMechanic(MechanicShop esql){//2
         try {
 		lname = in.readLine();
         }
+        if(lname.length() <= 0 || lname.length() > 32){
+			throw new Exception("Last name is either too long (over 32), or not long enough (0)... figure it out.");
+		}	
+		break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -426,6 +440,10 @@ public static void AddMechanic(MechanicShop esql){//2
 		try {
 		years = Integer.parseInt(in.readLine());
         }
+        if(years < 0 || lname.length() > 99){
+			throw new Exception("There are either too many years of experience (over 99), or not enough (0)... figure it out.");
+		}	
+		break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -444,26 +462,14 @@ public static void AddMechanic(MechanicShop esql){//2
         }
   
 	}
-	/*
-	public static void AddMechanic(MechanicShop esql){//2
-                int id = 5961;
-                String fname =  "joe";
-                String lname = "mama";
-		int years = 0;
-		String insertMechanic =	String.format("INSERT INTO Mechanic Values (%d, '%s', '%s', %d);", id, fname, lname, years);
-		System.out.println(insertMechanic);
+	
 
-                try {
-                esql.executeUpdate(insertMechanic);
 
-                }
-                catch (Exception e) {
-                System.out.println("Nope");
 
-                }
-  
-	}
-	*/
+
+
+
+	
 public static void AddCar(MechanicShop esql){//3
 		String vin = "v34575s";
 		String make = "vehicle";
@@ -519,16 +525,128 @@ public static void AddCar(MechanicShop esql){//3
 
 	}
 	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public static void InsertServiceRequest(MechanicShop esql){//4
 		
 	}
 	
+	
+
+
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
+		int wid, rid, mid;
+		String date, comment;
+		int bill;
 		
+		
+		//assuming person inputing knows the next id
+		System.out.println("Insert an unused WID: ");
+		try {
+		wid = Integer.parseInt(in.readLine());
+        } 
+		catch (Exception e) {
+		System.out.println("Invalid input");
+		
+		}
+		
+		//assuming person inputing knows the next id
+		System.out.println("Insert an unused RID: ");
+		try {
+		rid = Integer.parseInt(in.readLine());
+        } 
+		catch (Exception e) {
+		System.out.println("Invalid input");
+		
+		}
+		
+		//assuming person inputing knows the next id
+		System.out.println("Insert an unused MID: ");
+		try {
+		mid = Integer.parseInt(in.readLine());
+        } 
+		catch (Exception e) {
+		System.out.println("Invalid input");
+		
+		}
+		
+		System.out.println("Insert closing date: ");
+		try {
+		date = in.readLine();
+        }
+        if(date.length() <= 0 || date.length() > 10){
+			throw new Exception("Date format is YEAR-MM-DD");
+		}	
+		//break;  
+		catch (Exception e) {
+		System.out.println("Invalid input");
+		
+		}
+		
+		//assuming comments will be short 
+		System.out.println("Insert comment: ");
+		try {
+		comment = in.readLine();
+        }
+        if(comment.length() <= 0){
+			throw new Exception("Comment is blank");
+		}	
+		//break;  
+		catch (Exception e) {
+		System.out.println("Invalid input");
+		
+		}
+		
+		//assuming person knows the next bill
+		System.out.println("Insert an unissued bill: ");
+		try {
+		bill = Integer.parseInt(in.readLine());
+        } 
+		catch (Exception e) {
+		System.out.println("Invalid input");
+		
+		}
+		
+		
+		
+		String query = "SELECT COUNT(1) FROM Mechanic WHERE id = mid;
+		int mechanicexists = esql.executeQuery(query);
+		if (!mechanicexists){
+			throw new Exception("Mechanic does not exist.");
+		}	
+		//break;
+			
+		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE id = rid;
+		int ridexists = esql.executeQuery(q2);
+		if (!ridexists){
+			throw new Exception("RID does not exist.");
+		}	
+		//break;
+		
+		String 
 	}
 	
+	
+	
+	
 	public static void ListCustomersWithBillLessThan100(MechanicShop esql){//6
-        String query = "Select CR.date, CR.Comment, CR.bill From Customer C, Service_request SR, Closed_request CR Where C.id = SR.customer_id and SR.rid = CR.rid and CR.bill < 100;";
+        String query = "Select C.fname, C.lname, CR.date, CR.Comment, CR.bill From Customer C, Service_request SR, Closed_request CR Where C.id = SR.customer_id and SR.rid = CR.rid and CR.bill < 100;";
 	try {
 	esql.executeQueryAndPrintResult(query);
         }
@@ -537,30 +655,66 @@ public static void AddCar(MechanicShop esql){//3
 	}
         }
 	
-//note: count the number of cars everyone owns and select where the number owned is >=20
-	public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
-		String q2 = "SELECT COUNT (C.id) FROM Customer C, Owns O WHERE C.id = O.customer_id";
-		String query = "SELECT fname, lname FROM Customer C2 WHERE 20 < (" + q2 + ");";
-		//String query = "SELECT * FROM Customer WHERE id < 20;";
-		System.out.println(query);
-		try{
-		esql.executeQueryAndPrintResult(query);
-		}
-		
-		catch (Exception e) {
-        	System.out.println("Nope");
 
-        }
-		
+
+
+
+public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
+
+	String query = "SELECT fname, lname FROM Customer C WHERE C.id IN (SELECT customer_id FROM Owns GROUP BY customer_id HAVING COUNT(*) > 20);"; 
+	try{ 
+	esql.executeQueryAndPrintResult(query);
 	}
+	catch(Exception e) {
+		 System.out.println("Nope");
+	}	
 	
+
+
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
-		
+	String query = "SELECT C1.make, C1.model, C1.year FROM Car C1 WHERE C1.vin IN ( SELECT C.vin FROM Car C, Service_Request S  WHERE C.vin = S.car_vin AND S.odometer < 50000  AND C.year < 1995);";
+	String q2 = "Select C.make, C.model, C.year From Car C, Service_Request S where C.vin = S.car_vin and S.odometer < 50,000 and C.model < 1995;"; 
+	try {
+        esql.executeQueryAndPrintResult(query);
+		esql.executeQueryAndPrintResult(q2);
+        }
+	catch(Exception e){
+                System.out.println("Nope");
+        }
+	
 	}
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
-		//
-	String query = "Select C.make, C.model, Count(C.vin) as NumberOfRequests From Car C, Service_Request SR Where C.vin = SR.car_vin Group By C.vin  Order By NumberOfRequests Desc Limit 10;";
+	int k = 0;
+	System.out.println("Input k");
+	try{
+	k = Integer.parseInt(in.readLine());
+	}
+	if(k <= 0){
+			throw new Exception("Choose a better value (at least 1).");
+		}	
+	//break;
+	catch (Exception e)
+	{
+	System.out.println("Nope");
+	}
+	
+	String query = "Select C.make, C.model, Count(C.vin) as NumberOfRequests From Car C, Service_Request SR Where C.vin = SR.car_vin Group By C.vin  Order By NumberOfRequests Desc Limit " + k + ";";
 
 	try{
 	esql.executeQueryAndPrintResult(query);
@@ -572,8 +726,16 @@ public static void AddCar(MechanicShop esql){//3
 		
 	}
 	
+	
+
+
+
+
+
+
+
 	public static void ListCustomersInDescendingOrderOfTheirTotalBill(MechanicShop esql){//9
-		//
+		
         String query = "Select C.fname, C.lname, SUM(CR.bill) as TotalBill From Customer C, Service_Request SR, Closed_Request CR Where C.id = SR.customer_id and SR.rid = CR.rid Group By C.id Order By TotalBill Desc;";
 
 	try {
@@ -583,6 +745,8 @@ public static void AddCar(MechanicShop esql){//3
 	{
 	System.out.println("Nope");
 	}
-	}			
+	}
+
+
 	
 }
