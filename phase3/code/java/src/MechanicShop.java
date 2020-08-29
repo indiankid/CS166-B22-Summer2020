@@ -558,9 +558,12 @@ public static void AddCar(MechanicShop esql){//3
 
 
 	public static void CloseServiceRequest(MechanicShop esql) throws Exception{//5
-		int wid, rid, mid;
-		String date, comment;
-		int bill;
+		int wid = 0; 
+		int rid = 0; 
+		int mid = 0;
+		String date = "s"; 
+		String comment "d";
+		int bill = 0;
 		
 		
 		//assuming person inputing knows the next id
