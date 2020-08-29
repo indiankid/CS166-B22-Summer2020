@@ -640,6 +640,12 @@ public static void AddCar(MechanicShop esql){//3
 		
 		
 		String query = "SELECT COUNT(1) FROM Mechanic WHERE id = " + mid + ";";
+		try {
+		esql.executeQueryAndPrintResult(query);
+		}
+		catch (Exception e) {
+		System.out.println("Nope");	
+		}
 		int mechanicexists = esql.executeQuery(query);
 		System.out.println(mechanicexists);
 		if (mechanicexists == 0 ){
