@@ -444,7 +444,7 @@ public static void AddMechanic(MechanicShop esql){//2
 		System.out.println("Insert years of experience: ");
 		try {
 		years = Integer.parseInt(in.readLine());
-        }
+        
 
         if(years < 0 || lname.length() > 99){
 			throw new Exception("There are either too many years of experience (over 99), or not enough (0)... figure it out.");
@@ -596,7 +596,7 @@ public static void AddCar(MechanicShop esql){//3
 		System.out.println("Insert closing date: ");
 		try {
 		date = in.readLine();
-        }
+        
 
         if(date.length() <= 0 || date.length() > 10){
 			throw new Exception("Date format is YEAR-MM-DD");
@@ -612,7 +612,7 @@ public static void AddCar(MechanicShop esql){//3
 		System.out.println("Insert comment: ");
 		try {
 		comment = in.readLine();
-        }
+        
 
         if(comment.length() <= 0){
 			throw new Exception("Comment is blank");
@@ -638,14 +638,14 @@ public static void AddCar(MechanicShop esql){//3
 		
 		String query = "SELECT COUNT(1) FROM Mechanic WHERE id = mid;";
 		int mechanicexists = esql.executeQuery(query);
-		if (!mechanicexists){
+		if (mechanicexists == 0 ){
 			throw new Exception("Mechanic does not exist.");
 		}	
 		//break;
 			
 		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE id = rid;";
 		int ridexists = esql.executeQuery(q2);
-		if (!ridexists){
+		if (ridexists == 0){
 			throw new Exception("RID does not exist.");
 		}	
 		//break;
@@ -714,7 +714,7 @@ public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 	System.out.println("Input k");
 	try{
 	k = Integer.parseInt(in.readLine());
-	}
+	
 	
 	if(k <= 0){
 			throw new Exception("Choose a better value (at least 1).");
