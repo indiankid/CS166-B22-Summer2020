@@ -580,7 +580,7 @@ public static void AddCar(MechanicShop esql){//3
 		System.out.println("Insert the request's RID: ");
 		try {
 		rid = Integer.parseInt(in.readLine());
-        } 
+                } 
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -641,6 +641,7 @@ public static void AddCar(MechanicShop esql){//3
 		
 		String query = "SELECT COUNT(1) FROM Mechanic WHERE id = " + mid + ";";
 		int mechanicexists = esql.executeQuery(query);
+		System.out.println(mechanicexists);
 		if (mechanicexists == 0 ){
 			throw new Exception("Mechanic does not exist.");
 		}	
@@ -648,6 +649,7 @@ public static void AddCar(MechanicShop esql){//3
 			
 		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE rid = " + rid + ";";
 		int ridexists = esql.executeQuery(q2);
+		System.out.println(ridexists);
 		if (ridexists == 0){
 			throw new Exception("RID does not exist.");
 		}	
