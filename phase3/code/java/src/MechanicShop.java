@@ -646,7 +646,7 @@ public static void AddCar(MechanicShop esql){//3
 		catch (Exception e) {
 		System.out.println("Nope");	
 		}
-		int mechanicexists = esql.executeQuery(query);
+		int mechanicexists = esql.executeQueryAndPrintResult(query);
 		System.out.println(mechanicexists);
 		if (mechanicexists == 0 ){
 			throw new Exception("Mechanic does not exist.");
@@ -654,7 +654,7 @@ public static void AddCar(MechanicShop esql){//3
 		//break;
 			
 		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE rid = " + rid + ";";
-		int ridexists = esql.executeQuery(q2);
+		int ridexists = esql.executeQueryAndPrintResult(q2);
 		System.out.println(ridexists);
 		if (ridexists == 0){
 			throw new Exception("RID does not exist.");
