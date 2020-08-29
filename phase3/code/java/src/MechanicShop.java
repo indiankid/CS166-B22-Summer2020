@@ -562,7 +562,7 @@ public static void AddCar(MechanicShop esql){//3
 		int rid = 0; 
 		int mid = 0;
 		String date = "s"; 
-		String comment "d";
+		String comment = "d";
 		int bill = 0;
 		
 		
