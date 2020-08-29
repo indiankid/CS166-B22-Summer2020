@@ -574,7 +574,7 @@ public static void AddCar(MechanicShop esql){//3
 		}
 		
 		//assuming person inputing knows the next id
-		System.out.println("Insert an unused RID: ");
+		System.out.println("Insert the request's RID: ");
 		try {
 		rid = Integer.parseInt(in.readLine());
         } 
@@ -584,7 +584,7 @@ public static void AddCar(MechanicShop esql){//3
 		}
 		
 		//assuming person inputing knows the next id
-		System.out.println("Insert an unused MID: ");
+		System.out.println("Insert the Mechanic's MID: ");
 		try {
 		mid = Integer.parseInt(in.readLine());
         } 
@@ -636,20 +636,31 @@ public static void AddCar(MechanicShop esql){//3
 		
 		
 		
-		String query = "SELECT COUNT(1) FROM Mechanic WHERE id = mid;";
+		String query = "SELECT COUNT(1) FROM Mechanic WHERE id = " + mid + ";";
 		int mechanicexists = esql.executeQuery(query);
 		if (mechanicexists == 0 ){
 			throw new Exception("Mechanic does not exist.");
 		}	
 		//break;
 			
-		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE id = rid;";
+		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE id = " + rid + ";";
 		int ridexists = esql.executeQuery(q2);
 		if (ridexists == 0){
 			throw new Exception("RID does not exist.");
 		}	
 		//break;
 		
+		String insertCloseRequest = String.format( "INSERT INTO CloseRequest (wid, rid, mid, date, comment, bill) Values ( %d, %d, %d, '%s', '%s', %d);",wid, rid, mid, date, comment, bill);
+        	System.out.println(insertCloseRequest);
+		
+		try {
+		esql.executeUpdate(insertCloseRequest);
+		
+		}
+		catch (Exception e) {
+		System.out.println("Something wrong with query");
+		
+		} 	
 	}
 	
 	
@@ -682,11 +693,9 @@ public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 
 
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
-	String query = "SELECT C1.make, C1.model, C1.year FROM Car C1 WHERE C1.vin IN ( SELECT C.vin FROM Car C, Service_Request S  WHERE C.vin = S.car_vin AND S.odometer < 50000  AND C.year < 1995);";
-	String q2 = "Select C.make, C.model, C.year From Car C, Service_Request S where C.vin = S.car_vin and S.odometer < 50,000 and C.model < 1995;"; 
+	String q = "Select C.make, C.model, C.year From Car C, Service_Request S where C.vin = S.car_vin and S.odometer < 50,000 and C.model < 1995;"; 
 	try {
-        esql.executeQueryAndPrintResult(query);
-		esql.executeQueryAndPrintResult(q2);
+		esql.executeQueryAndPrintResult(q);
         }
 	catch(Exception e){
                 System.out.println("Nope");
