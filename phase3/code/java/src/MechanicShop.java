@@ -646,7 +646,7 @@ public static void AddCar(MechanicShop esql){//3
 		}	
 		//break;
 			
-		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE id = " + rid + ";";
+		String q2 = "SELECT COUNT(1) FROM Service_Request WHERE rid = " + rid + ";";
 		int ridexists = esql.executeQuery(q2);
 		if (ridexists == 0){
 			throw new Exception("RID does not exist.");
@@ -696,9 +696,11 @@ public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 
 
 	public static void ListCarsBefore1995With50000Milles(MechanicShop esql){//8
-	String q = "Select C.make, C.model, C.year From Car C, Service_Request S where C.vin = S.car_vin and S.odometer < 50,000 and C.model < 1995;"; 
+	String query = "SELECT C1.make, C1.model, C1.year FROM Car C1 WHERE C1.vin IN ( SELECT C.vin FROM Car C,Service_Request S  WHERE C.vin = S.car_vin AND S.odometer < 50000  AND C.year < 1995);";
+	//String q = "Select C.make, C.model, C.year From Car C, Service_Request S where C.vin = S.car_vin and S.odometer < 50,000 and C.model < 1995;"; 
 	try {
-		esql.executeQueryAndPrintResult(q);
+		esql.executeQueryAndPrintResult(query);
+	//	esql.executeQueryAndPrintResult(q);
         }
 	catch(Exception e){
                 System.out.println("Nope");
