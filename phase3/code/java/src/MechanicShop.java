@@ -330,17 +330,12 @@ public class MechanicShop{
         System.out.println("Insert first name: ");
 		try {
 		fname = in.readLine();
-        	}
-		catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {
+        	
 		if(fname.length() <= 0 || fname.length() > 32){
 			throw new Exception("First name is either too long (over 32), or not long enough (0)... figure it out.");
 		}
 		}
-		break;  
+		//break;  
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -349,17 +344,12 @@ public class MechanicShop{
         System.out.println("Insert last name: ");
         try {
 		lname = in.readLine();
-        }
-	catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {	
+        
         if(lname.length() <= 0 || lname.length() > 32){
 			throw new Exception("Last name is either too long (over 32), or not long enough (0)... figure it out.");
 		}
 		}
-		break;
+		//break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -368,17 +358,12 @@ public class MechanicShop{
 		System.out.println("Insert phone number: ");
         try {
 		phone = in.readLine();
-        }
-	catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {
+
         if(phone.length() <= 0 || phone.length() > 13){
 			throw new Exception("Number should be in this format: (XXX)XXX-XXXX");
 		}
 		}
-		break;
+		//break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -387,17 +372,12 @@ public class MechanicShop{
 		System.out.println("Insert address: ");
         try {
 		address = in.readLine();
-        }
-	catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {	
+
         if(address.length() <= 0 || address.length() > 256){
 			throw new Exception("Address is either too long (over 256), or not long enough (0)... figure it out.");
 		}
 		}
-		break;
+		//break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -437,17 +417,12 @@ public static void AddMechanic(MechanicShop esql){//2
         System.out.println("Insert first name: ");
 		try {
 		fname = in.readLine();
-        }
-	catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {
+
         if(fname.length() <= 0 || fname.length() > 32){
 			throw new Exception("First name is either too long (over 32), or not long enough (0)... figure it out.");
 		}
 		}
-		break;  
+		//break;  
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -456,17 +431,11 @@ public static void AddMechanic(MechanicShop esql){//2
         System.out.println("Insert last name: ");
         try {
 		lname = in.readLine();
-        }
-	catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {
         if(lname.length() <= 0 || lname.length() > 32){
 			throw new Exception("Last name is either too long (over 32), or not long enough (0)... figure it out.");
 		}
 		}
-		break;
+		//break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -476,16 +445,12 @@ public static void AddMechanic(MechanicShop esql){//2
 		try {
 		years = Integer.parseInt(in.readLine());
         }
-	catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {
+
         if(years < 0 || lname.length() > 99){
 			throw new Exception("There are either too many years of experience (over 99), or not enough (0)... figure it out.");
 		}
 		}
-		break;
+		//break;
 		catch (Exception e) {
 		System.out.println("Invalid input");
 		
@@ -632,11 +597,7 @@ public static void AddCar(MechanicShop esql){//3
 		try {
 		date = in.readLine();
         }
-		catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {
+
         if(date.length() <= 0 || date.length() > 10){
 			throw new Exception("Date format is YEAR-MM-DD");
 		}	
@@ -652,11 +613,7 @@ public static void AddCar(MechanicShop esql){//3
 		try {
 		comment = in.readLine();
         }
-		catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        	try {
+
         if(comment.length() <= 0){
 			throw new Exception("Comment is blank");
 		}
@@ -693,7 +650,6 @@ public static void AddCar(MechanicShop esql){//3
 		}	
 		//break;
 		
-		String 
 	}
 	
 	
@@ -759,11 +715,7 @@ public static void ListCustomersWithMoreThan20Cars(MechanicShop esql){//7
 	try{
 	k = Integer.parseInt(in.readLine());
 	}
-	catch (Exception e) {
-		System.out.println("Invalid input");
-		
-		}
-        try {	
+	
 	if(k <= 0){
 			throw new Exception("Choose a better value (at least 1).");
 		}
