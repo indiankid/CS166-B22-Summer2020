@@ -148,3 +148,14 @@ COPY Closed_Request (
 )
 FROM 'closed_request.csv'
 WITH DELIMITER ',';
+
+--Indexes---
+DROP INDEX IF EXISTS mechanic_id;
+Drop INDEX IF EXISTS service_id;
+DROP INDEX IF EXISTS odometer;
+DROP INDEX IF EXISTS year;
+
+CREATE INDEX mechanic_id ON Mechanic USING HASH (id);
+CREATE INDEX service_id ON Service_Request USING HASH (rid);
+CREATE INDEX odometer ON Service_Request USING BTREE (odometer);
+CREATE INDEX year ON Car USING BTREE (year);
