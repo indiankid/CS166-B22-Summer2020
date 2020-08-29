@@ -359,7 +359,7 @@ public class MechanicShop{
         try {
 		phone = in.readLine();
 
-        if(phone.length() <= 0 || phone.length() > 13){
+        if(phone.length() != 13){
 			throw new Exception("Number should be in this format: (XXX)XXX-XXXX");
 		}
 		}
@@ -379,7 +379,7 @@ public class MechanicShop{
 		}
 		//break;
 		catch (Exception e) {
-		System.out.println("Invalid input");
+		System.out.println("Invalid address");
 		
 		}                
 		
@@ -403,7 +403,7 @@ public static void AddMechanic(MechanicShop esql){//2
 	int years = 0;
 		
 		//assuming that the person adding in the input knows the next ID
-        System.out.println("Insert an unused Customer ID: ");
+        System.out.println("Insert an unused Mechanic ID: ");
 		try {
 		id = Integer.parseInt(in.readLine());
         } 
